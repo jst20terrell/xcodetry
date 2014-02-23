@@ -22,6 +22,7 @@
 @property (strong, nonatomic) UIImage *imgFemale;
 @property (strong, nonatomic) UIImage *imgMale;
 @property (strong, nonatomic) UIImage *imgBackground;
+@property (strong, nonatomic) UIImage *imgMaleLight, *imgFemaleLight;        //you have to add this line they have to have the same name //imgNew
 @property (strong, nonatomic) IBOutlet UISlider *sliderBar;
 
 @end

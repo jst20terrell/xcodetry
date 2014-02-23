@@ -21,6 +21,8 @@
 
 @implementation ViewController
 
+@synthesize imgMaleLight;     //this line
+@synthesize imgFemaleLight;
 @synthesize imgFemale;
 @synthesize imgMale;
 @synthesize imgBackground;
@@ -33,6 +35,7 @@
 @synthesize sliderBar;
 @synthesize selectorMaleFemale;
 AVAudioPlayer *audioPlayer;
+bool GenderSelected;    //To keep track of gender
 
 //Called when view loaded
 - (void)viewDidLoad
@@ -44,6 +47,11 @@ AVAudioPlayer *audioPlayer;
     imgBackground = [UIImage imageNamed:@"background.jpeg"];
     //if you need to add m ore images add them like above
     
+    //you can add images like this
+    imgMaleLight = [UIImage imageNamed:@"MaleHeadSide.jpg"]; //this line
+    imgFemaleLight = [UIImage imageNamed:@"FemaleHeadSide.jpg"];
+    
+    GenderSelected = true;  //true means male, false female
     
     imgMain.layer.masksToBounds = YES;
     imgMain.layer.cornerRadius = 30.0;
@@ -92,11 +100,16 @@ AVAudioPlayer *audioPlayer;
   
 }
 
-//Called when Start button is pressed
+//Called when Start button is pressed//we just need to add the image to the project... ok hold a sec and Ill do it
 - (IBAction)btnStartTouchDown:(UIButton *)sender
 {
+    //Here you are assigning the image file to the image placeholder
+    if(GenderSelected == true)
+        self.imgMain.image = self.imgMaleLight;
+    else
+        self.imgMain.image = self.imgFemaleLight;
 }
-
+//my bad we need to change the file name
 //Called when Compress button is pressed
 - (IBAction)btnCompressTouchDown:(UIButton *)sender
 {
@@ -125,9 +138,15 @@ AVAudioPlayer *audioPlayer;
     NSString *text = [sender titleForSegmentAtIndex:[sender selectedSegmentIndex]];
     
     if([text isEqualToString:@"Female"])
+    {
         self.imgMain.image = self.imgFemale;
+        GenderSelected = false;
+    }
     else
+    {
+        GenderSelected = true;
         self.imgMain.image = self.imgMale;
+    }
 }
 
 
